@@ -16,7 +16,10 @@ class MedicalHistoryType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_patients = graphene.List(PatientType)
-    records_by_patient = graphene.List(MedicalHistoryType, patient_id=graphene.Int())
+    records_by_patient = graphene.List(
+        MedicalHistoryType,
+        patient_id=graphene.Int(),
+    )
 
     def resolve_all_patients(self, info):
         return Patient.objects.prefetch_related('records').all()
