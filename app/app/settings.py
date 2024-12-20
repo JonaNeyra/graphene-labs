@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'core',
     'mixed_api',
     'appointments',
+    'policies',
 ]
 
 MIDDLEWARE = [

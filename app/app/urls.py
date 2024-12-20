@@ -21,6 +21,7 @@ from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 from mixed_api.schema import schema as patients_gql
+from policies.schema import schema as policies_gql
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +39,13 @@ urlpatterns += [
         csrf_exempt(GraphQLView.as_view(
             graphiql=True,
             schema=appointments_gql,
+        )),
+    ),
+    path(
+        'graphql/foreing_keys_gql/',
+        csrf_exempt(GraphQLView.as_view(
+            graphiql=True,
+            schema=policies_gql,
         )),
     ),
 ]
