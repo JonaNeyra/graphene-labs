@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'mixed_api',
+    'appointments',
 ]
 
 MIDDLEWARE = [
