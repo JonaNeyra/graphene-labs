@@ -6,8 +6,14 @@ from graphene.test import Client
 
 class GrapheneTest(TestCase):
     def setUp(self):
-        self.doctor = Doctor.objects.create(name="Dr. Strange", specialty="Surgery")
-        self.patient = Patient.objects.create(name="Jonathan Neyra", has_debts=False)
+        self.doctor = Doctor.objects.create(
+            name="Dr. Strange",
+            specialty="Surgery",
+        )
+        self.patient = Patient.objects.create(
+            name="Jonathan Neyra",
+            has_debts=False,
+        )
 
     def test_create_doctor(self):
         client = Client(schema)
@@ -24,7 +30,10 @@ class GrapheneTest(TestCase):
         """
         result = client.execute(mutation)
         self.assertTrue(result['data']['createDoctor']['success'])
-        self.assertEqual(result["data"]["createDoctor"]["message"], "Doctor created")
+        self.assertEqual(
+            result["data"]["createDoctor"]["message"],
+            "Doctor created",
+        )
 
     def test_create_patient(self):
         client = Client(schema)
@@ -38,7 +47,10 @@ class GrapheneTest(TestCase):
         """
         result = client.execute(mutation)
         self.assertTrue(result["data"]["createPatient"]["success"])
-        self.assertEqual(result["data"]["createPatient"]["message"], "Patient created")
+        self.assertEqual(
+            result["data"]["createPatient"]["message"],
+            "Patient created",
+        )
 
     def test_create_appointment(self):
         client = Client(schema)
@@ -58,7 +70,10 @@ class GrapheneTest(TestCase):
         """
         result = client.execute(mutation)
         self.assertTrue(result["data"]["createAppointment"]["success"])
-        self.assertEqual(result["data"]["createAppointment"]["message"], "Appointment created")
+        self.assertEqual(
+            result["data"]["createAppointment"]["message"],
+            "Appointment created",
+        )
 
     def test_query_patient(self):
         client = Client(schema)
@@ -88,4 +103,7 @@ class GrapheneTest(TestCase):
         """
         result = client.execute(query)
         self.assertGreaterEqual(len(result["data"]["allDoctors"]), 1)
-        self.assertEqual(result["data"]["allDoctors"][0]["name"], "Dr. Strange")
+        self.assertEqual(
+            result["data"]["allDoctors"][0]["name"],
+            "Dr. Strange",
+        )

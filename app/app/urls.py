@@ -35,6 +35,9 @@ urlpatterns += [
     ),
     path(
         'graphql/mutation_gql/',
-        csrf_exempt(GraphQLView.as_view(graphiql=True, schema=appointments_gql)),
+        csrf_exempt(GraphQLView.as_view(
+            graphiql=True,
+            schema=appointments_gql,
+        )),
     ),
 ]
